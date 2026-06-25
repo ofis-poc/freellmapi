@@ -11,6 +11,11 @@ export interface OfisMediaModel {
 }
 
 export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
+
+  // =========================
+  // GOOGLE TTS
+  // =========================
+
   {
     platform: 'google',
     model_id: 'gemini-2.5-flash-preview-tts',
@@ -20,6 +25,7 @@ export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
     enabled: 1,
     quota_label: 'Keyless',
   },
+
   {
     platform: 'google',
     model_id: 'gemini-2.5-pro-preview-tts',
@@ -29,6 +35,7 @@ export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
     enabled: 1,
     quota_label: 'Keyless',
   },
+
   {
     platform: 'google',
     model_id: 'gemini-2.5-flash-preview-native-audio-dialog',
@@ -38,6 +45,11 @@ export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
     enabled: 1,
     quota_label: 'Keyless',
   },
+
+  // =========================
+  // GOOGLE STT
+  // =========================
+
   {
     platform: 'google',
     model_id: 'gemini-2.5-flash',
@@ -47,17 +59,104 @@ export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
     enabled: 1,
     quota_label: 'Keyless',
   },
+
+  // =========================
+  // GROQ STT
+  // =========================
+
   {
-    platform: 'google',
-    model_id: 'gemini-live-2.5-flash-preview',
-    display_name: 'Gemini Live Audio',
+    platform: 'groq',
+    model_id: 'whisper-large-v3',
+    display_name: 'Groq Whisper Large V3',
+    modality: 'transcription',
+    priority: 2,
+    enabled: 1,
+    quota_label: 'API Key',
+  },
+
+  {
+    platform: 'groq',
+    model_id: 'whisper-large-v3-turbo',
+    display_name: 'Groq Whisper Turbo',
+    modality: 'transcription',
+    priority: 3,
+    enabled: 1,
+    quota_label: 'API Key',
+  },
+
+  // =========================
+  // CLOUDFLARE
+  // =========================
+
+  {
+    platform: 'cloudflare',
+    model_id: '@cf/openai/whisper',
+    display_name: 'Cloudflare Whisper',
+    modality: 'transcription',
+    priority: 4,
+    enabled: 1,
+    quota_label: 'API Key',
+  },
+
+  {
+    platform: 'cloudflare',
+    model_id: '@cf/myshell-ai/melotts',
+    display_name: 'Cloudflare MeloTTS',
     modality: 'audio',
     priority: 4,
     enabled: 1,
-    quota_label: 'Keyless',
+    quota_label: 'API Key',
   },
-];
 
+  // =========================
+  // NVIDIA
+  // =========================
+
+  {
+    platform: 'nvidia',
+    model_id: 'parakeet-ctc-1.1b',
+    display_name: 'NVIDIA Parakeet STT',
+    modality: 'transcription',
+    priority: 5,
+    enabled: 1,
+    quota_label: 'API Key',
+  },
+
+  // =========================
+  // OPENAI COMPAT
+  // =========================
+
+  {
+    platform: 'openai',
+    model_id: 'whisper-1',
+    display_name: 'OpenAI Whisper',
+    modality: 'transcription',
+    priority: 6,
+    enabled: 1,
+    quota_label: 'API Key',
+  },
+
+  {
+    platform: 'openai',
+    model_id: 'tts-1',
+    display_name: 'OpenAI TTS-1',
+    modality: 'audio',
+    priority: 5,
+    enabled: 1,
+    quota_label: 'API Key',
+  },
+
+  {
+    platform: 'openai',
+    model_id: 'tts-1-hd',
+    display_name: 'OpenAI TTS-1 HD',
+    modality: 'audio',
+    priority: 6,
+    enabled: 1,
+    quota_label: 'API Key',
+  },
+
+];
 export function ensureOfisMediaCatalog(db: DatabaseType.Database): void {
   let totalChanges = 0;
 
