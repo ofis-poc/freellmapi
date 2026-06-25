@@ -20,6 +20,33 @@ export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
     enabled: 1,
     quota_label: 'Keyless',
   },
+  {
+    platform: 'google',
+    model_id: 'gemini-2.5-pro-preview-tts',
+    display_name: 'Gemini 2.5 Pro TTS',
+    modality: 'audio',
+    priority: 2,
+    enabled: 1,
+    quota_label: 'Keyless',
+  },
+  {
+    platform: 'google',
+    model_id: 'gemini-2.5-flash-preview-native-audio-dialog',
+    display_name: 'Gemini Native Audio',
+    modality: 'audio',
+    priority: 3,
+    enabled: 1,
+    quota_label: 'Keyless',
+  },
+  {
+    platform: 'google',
+    model_id: 'gemini-live-2.5-flash-preview',
+    display_name: 'Gemini Live Audio',
+    modality: 'audio',
+    priority: 4,
+    enabled: 1,
+    quota_label: 'Keyless',
+  },
 ];
 
 export function ensureOfisMediaCatalog(db: DatabaseType.Database): void {
