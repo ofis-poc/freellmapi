@@ -40,6 +40,15 @@ export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
   },
   {
     platform: 'google',
+    model_id: 'gemini-2.5-flash',
+    display_name: 'Gemini Speech To Text',
+    modality: 'transcription',
+    priority: 1,
+    enabled: 1,
+    quota_label: 'Keyless',
+  },
+  {
+    platform: 'google',
     model_id: 'gemini-live-2.5-flash-preview',
     display_name: 'Gemini Live Audio',
     modality: 'audio',
