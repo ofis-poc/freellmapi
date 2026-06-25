@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { migrateDbSchema } from './migrations.js';
+import { ensureOfisMediaCatalog } from '../catalog/ofis-media.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_PATH = path.resolve(__dirname, '../../data/freeapi.db');
@@ -33,10 +34,12 @@ export function initDb(dbPath?: string): Database.Database {
   db.pragma('foreign_keys = ON');
 
   migrateDbSchema(db);
+  ensureOfisMediaCatalog(db);
 
   console.log(`Database initialized at ${resolvedPath}`);
   return db;
 }
+
 
 export function getUnifiedApiKey(): string {
   const db = getDb();

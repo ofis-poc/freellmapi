@@ -15,7 +15,7 @@ function addKey(platform: string, raw = `${platform}-test-key`) {
 
 function addMedia(platform: string, modelId: string, modality: 'image' | 'audio', priority = 1) {
   getDb().prepare(`
-    INSERT INTO media_models (platform, model_id, display_name, modality, priority, enabled, quota_label)
+    INSERT OR REPLACE INTO media_models (platform, model_id, display_name, modality, priority, enabled, quota_label)
     VALUES (?, ?, ?, ?, ?, 1, '')
   `).run(platform, modelId, modelId, modality, priority);
 }

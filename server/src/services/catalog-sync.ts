@@ -4,6 +4,7 @@ import { getDb, getSetting, setSetting } from '../db/index.js';
 import { hasProvider } from '../providers/index.js';
 import { MEDIA_PLATFORMS } from './media.js';
 import type { Platform } from '@freellmapi/shared/types.js';
+import { ensureOfisMediaCatalog, OFIS_MEDIA_CATALOG } from '../catalog/ofis-media.js';
 
 // Generative-media modalities are routed into the separate media_models table
 // (see services/media.ts), never into the chat `models` table.
@@ -281,12 +282,14 @@ export function applyCatalog(db: DatabaseType.Database, catalog: Catalog): NonNu
     }
 
     // Remove media models the catalog no longer lists (own table, no fallback_config).
+    const ofisMediaKeys = new Set(OFIS_MEDIA_CATALOG.map(m => `${m.platform}:${m.model_id}`));
     const mediaCandidates = db
       .prepare('SELECT id, platform, model_id FROM media_models')
       .all() as { id: number; platform: string; model_id: string }[];
     const deleteMedia = db.prepare('DELETE FROM media_models WHERE id = ?');
     for (const c of mediaCandidates) {
       if (!MEDIA_PLATFORMS.has(c.platform)) continue; // not media-managed by this binary
+      if (ofisMediaKeys.has(`${c.platform}:${c.model_id}`)) continue; // preserve OFIS media models
       if (!inMediaCatalog.has(`${c.platform}:${c.model_id}`)) {
         deleteMedia.run(c.id);
         counts.removed++;
@@ -311,6 +314,7 @@ export function applyCatalog(db: DatabaseType.Database, catalog: Catalog): NonNu
   });
 
   apply();
+  ensureOfisMediaCatalog(db);
   return counts;
 }
 
