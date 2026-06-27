@@ -35,6 +35,24 @@ export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
     enabled: 1,
     quota_label: 'Keyless',
   },
+  {
+  platform: 'groq',
+  model_id: 'canopylabs/orpheus-v1-english',
+  display_name: 'Orpheus English',
+  modality: 'audio',
+  priority: 1,
+  enabled: 1,
+  quota_label: 'Groq'
+},
+{
+  platform: 'groq',
+  model_id: 'canopylabs/orpheus-arabic-saudi',
+  display_name: 'Orpheus Arabic',
+  modality: 'audio',
+  priority: 2,
+  enabled: 1,
+  quota_label: 'Groq'
+},
 
   
   {
