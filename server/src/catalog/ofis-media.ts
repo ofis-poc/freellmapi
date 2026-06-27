@@ -36,6 +36,36 @@ export const OFIS_MEDIA_CATALOG: OfisMediaModel[] = [
     quota_label: 'Keyless',
   },
 
+  
+  {
+    "platform": "siliconflow",
+    "model_id": "IndexTTS-2",
+    "display_name": "IndexTTS-2",
+    "modality": "audio",
+    "priority": 1,
+    "enabled": 1,
+    "quota_label": "API Key"
+  },
+  {
+    "platform": "siliconflow",
+    "model_id": "Fish-Speech-1.5",
+    "display_name": "Fish Speech 1.5",
+    "modality": "audio",
+    "priority": 2,
+    "enabled": 1,
+    "quota_label": "API Key"
+  },
+  {
+    "platform": "siliconflow",
+    "model_id": "FunAudioLLM/CosyVoice2-0.5B",
+    "display_name": "CosyVoice 2",
+    "modality": "audio",
+    "priority": 3,
+    "enabled": 1,
+    "quota_label": "API Key"
+  },
+
+
   {
     platform: 'google',
     model_id: 'gemini-2.5-flash-preview-native-audio-dialog',
